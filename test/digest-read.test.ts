@@ -74,6 +74,11 @@ describe('readNight', () => {
     expect(readNight('runs', '2026-10-27')).not.toBeNull();
   });
 
+  it('returns null for a night that is not a date, even when the path exists', () => {
+    expect(readNight('test', '../runs/2026-10-28')).toBeNull();
+    expect(readNight('runs', '2026-10-28')?.rows).toHaveLength(5);
+  });
+
   it('returns no rows and no bad lines for an empty file', () => {
     expect(readNight(nightFile(''), '2026-01-01')).toEqual({ rows: [], badLines: 0 });
   });

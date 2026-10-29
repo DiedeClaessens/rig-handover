@@ -23,6 +23,7 @@ function parseLine(text: string): Line | null {
 }
 
 export const readNight: ReadNight = (runsDir, night) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(night)) return null;
   let text: string;
   try {
     text = readFileSync(join(runsDir, `${night}.jsonl`), 'utf8');
